@@ -1,15 +1,11 @@
-// import Character from './Character';
-
 export default class Team {
   constructor() {
     this.members = new Set();
   }
 
   add(obj) {
-    const sizeA = this.members.size;
+    if (this.members.has(obj)) throw new Error('Нельзя повторно добавлять того же персонажа');
     this.members.add(obj);
-    const sizeB = this.members.size;
-    if (sizeA === sizeB) throw new Error('Нельзя повторно добавлять того же персонажа');
   }
 
   addAll(...rest) {
@@ -19,10 +15,6 @@ export default class Team {
   }
 
   get toArray() {
-    const result = [];
-    this.members.forEach((element) => {
-      result.push(element);
-    });
-    return result;
+    return [...this.members];
   }
 }
